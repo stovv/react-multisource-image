@@ -3,20 +3,15 @@ import { object, shape, string, arrayOf, any } from 'prop-types'
 
 export const MultiSourceImage = ({
   sources: { defaultSource, formats },
-  mediaMapping = {
-    large: '(min-width: 1440px)',
-    medium: '(min-width: 960px)',
-    small: '(max-width: 959px)',
-    thumbnail: '(max-width: 300px)'
-  },
+  mediaMapping = {},
   alt,
   backend = '',
+  children,
   ...props
 }) => {
   return (
     <picture>
       {Object.keys(formats).map((formatType, index) => {
-        if (mediaMapping[formatType] === undefined) return null
         return formats[formatType].map((format) => {
           return (
             <Fragment key={index}>
@@ -29,7 +24,9 @@ export const MultiSourceImage = ({
           )
         })
       })}
-      <img src={`${backend}${defaultSource.url}`} alt={alt} {...props} />
+      <img src={`${backend}${defaultSource.url}`} alt={alt} {...props}>
+        {children}
+      </img>
     </picture>
   )
 }
