@@ -23,6 +23,8 @@ import MultiSourceImage from 'react-multisource-image'
 class Example extends Component {
   render() {
     return <MultiSourceImage
+      // ignore all jpeg formats
+      ignore={["image/jpeg"]}
       sources={{
         defaultSource: {
           url: "/uploads/hello_origin.jpg",
@@ -95,6 +97,7 @@ class Example extends Component {
 | `alt` | required | Alternative text for img |
 | `backend` | optional | Backend host e.g `http://backend.com` is added to the url of the picture |
 | `style` | optional | React style |
+| `ignore` | optional | Array for skip any mime types |
 | `className` | optional | Class Name |
 
 ### Sources structure
